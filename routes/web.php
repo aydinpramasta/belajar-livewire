@@ -7,3 +7,5 @@ Route::get('/about', \App\Livewire\About::class)->name('about');
 
 Route::get('/users', \App\Livewire\Users\Index::class)->name('users.index');
 Route::get('/users/{user}', \App\Livewire\Users\Show::class)->name('users.show');
+
+Route::get('/posts', \App\Livewire\Posts\Index::class)->name('posts.index');
