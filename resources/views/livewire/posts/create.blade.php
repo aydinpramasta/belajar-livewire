@@ -1,5 +1,7 @@
 <div class="m-5 card">
     <div class="card-body">
+        <x-alert type="success" :message="session()->get('success')"/>
+
         <h3 class="card-title">New Post</h3>
 
         <form wire:submit="save">

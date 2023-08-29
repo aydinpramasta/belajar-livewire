@@ -25,6 +25,8 @@ class Create extends Component
 
         Post::query()->create($validated);
 
+        session()->flash('success', 'Post created successfully.');
+
         $this->reset();
     }
 
