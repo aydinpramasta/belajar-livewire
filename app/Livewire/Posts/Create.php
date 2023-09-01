@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Posts;
 
-use App\Models\Post;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
@@ -16,14 +16,11 @@ class Create extends Component
     #[Rule(['required', 'string'])]
     public string $body;
 
-    #[Rule(['required', 'exists:' . User::class . ',id'])]
-    public string $user_id;
-
     public function save(): void
     {
         $validated = $this->validate();
 
-        Post::query()->create($validated);
+        Auth::user()->posts()->create($validated);
 
         session()->flash('success', 'Post created successfully.');
 
