@@ -5,7 +5,7 @@
         </div>
 
         <div class="col-md-6">
-            <livewire:posts.collection/>
+            <livewire:posts.collection lazy/>
         </div>
     </div>
 </div>

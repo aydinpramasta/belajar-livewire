@@ -11,8 +11,15 @@ class Collection extends Component
 {
     protected $listeners = ['postCreated'];
 
+    public function placeholder(): View
+    {
+        return view('livewire.posts.placeholder');
+    }
+
     public function render(): View
     {
+        sleep(1); // simulate expensive process
+
         $posts = Post::query()
             ->with('user')
             ->whereBelongsTo(Auth::user())
