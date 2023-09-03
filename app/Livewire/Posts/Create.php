@@ -20,10 +20,10 @@ class Create extends Component
     {
         $validated = $this->validate();
 
-        Auth::user()->posts()->create($validated);
+        $post = Auth::user()->posts()->create($validated);
+        $this->dispatch('postCreated', $post->id);
 
         session()->flash('success', 'Post created successfully.');
-
         $this->reset();
     }
 

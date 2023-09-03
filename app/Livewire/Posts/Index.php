@@ -2,12 +2,23 @@
 
 namespace App\Livewire\Posts;
 
+use App\Models\Post;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Index extends Component
 {
-    public function render()
+    protected $listeners = ['postCreated'];
+
+    public function render(): View
     {
-        return view('livewire.posts.index');
+        $posts = Post::query()
+            ->with('user')
+            ->whereBelongsTo(Auth::user())
+            ->latest()
+            ->get();
+
+        return view('livewire.posts.index', ['posts' => $posts]);
     }
 }
